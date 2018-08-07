@@ -78,6 +78,61 @@ fn ui(app: &gtk::Application) {
 	);
 
 	// Entry
+    let entry_box = gtk::box::new(
+        gtk::Orientation::Horizontal,5
+        );
+    entry_box.set_halign(gtk::Align::Center);
+    let entry = gtk::Entry::new();
+
+    //pack entry
+    entry_box.pack_start(
+        &entry,
+        false,
+        false,
+        0
+    );
+    //guess and stop buttons
+    let guess_button = gtk::Button::new_with_label("Guess!");
+    let stop_button = gtk::Button::new_with_label("Stop!");
+    let button_box = gtk::Box::new(
+        gtk::Orientation::Horizontal,
+        5
+    );
+    button_box.pack_start(
+        &guess_button,
+        true,
+        false,
+        0
+    );
+    button_box.pack_start(
+        &stop_button,
+        true,
+        false,
+        0
+    );
+
+    // Add child box to container
+    container.pack_start(
+        &message_box,
+        true,
+        false,
+        0
+    );
+    container.pack_start(
+        &entry_box,
+        true,
+        false,
+        0
+    );
+    container.pack_start(
+        &button_box,
+        true,
+        false,
+        0
+    );
+
+
+
 
 }
 
