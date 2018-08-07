@@ -130,7 +130,60 @@ fn ui(app: &gtk::Application) {
         false,
         0
     );
+    // Add container into window
+    window.add(&container);
 
+    // And show everything
+    window.show_all();
+
+    // Handle Event Signals
+    // Clone secret
+    let secret_clone = secret.clone();
+    // Clone mode
+    let mode_clone = mode.clone();
+    let mode_clone_dua = mode_clone.clone();
+    // Clone headerbar
+    let headerbar_clone = header.headerbar.clone();
+    // Clone container
+    let container_clone = container.clone();
+    // Clone message
+    let message_clone = message.clone();
+
+    switch.connect_property_active_notify(move |switch| {
+        if switch.get_active() {
+            *mode_clone.borrow_mut() = Mode::Hard;
+            headerbar_clone.set_title("Game Mode (1-100): HARD!");
+        } else {
+            *mode_clone.borrow_mut() = Mode::Normal;
+            headerbar_clone.set_title("Game Mode (1-10): Normal!");
+        }
+    });
+
+     start_button.connect_clicked(move |b| {
+        match *mode_clone_dua.borrow() {
+            Mode::Hard => {
+                *secret_clone.borrow_mut() = Some(rand::thread_rng().gen_range(1, 101));
+            },
+            Mode::Normal => {
+                *secret_clone.borrow_mut() = Some(rand::thread_rng().gen_range(1, 10));
+            }
+        }
+        b.set_sensitive(false);
+        container_clone.set_sensitive(true);
+    });
+
+    guess_button.connect_clicked(move |_| {
+        let entry = entry.get_text().unwrap();
+        let mut guess: Option<u32> = None;
+
+        match entry.trim().parse() {
+            Ok(num) => {
+                guess = Some(num);
+            },
+            Err(_)  => {
+                message_clone.set_label("Please enter a number");
+            }
+        }
 
 
 
