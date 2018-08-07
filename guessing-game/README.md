@@ -33,7 +33,7 @@ Firstly I was going to use Glade prototyping my application then I changed my mi
 
 ## Review about gtk rs
 
- - Since gtk rs dosn't uses any strict rules about ownership and Borrowing . The lib handles these situation itself aslo I didn't have to write a 100 lines of gtk code. So , I was happy that majority of the trait impl I had to do using Rust . 
+ - Since gtk rs doesnt use any strict rules about ownership and Borrowing . The lib handles these situation itself also I didn't have to write a 100 lines of gtk code. So , I was happy that majority of the trait impl I had to do using Rust . 
 
 
 
