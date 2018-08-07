@@ -1,0 +1,12 @@
+[package]
+name = "guessing-game"
+version = "0.1.0"
+authors = ["Abdullah"]
+
+[dependencies.gtk]
+version = "0.3.0"
+features = ["v3_16"]
+
+[dependencies]
+rand = "0.3"
+gio = "0.3.0"
