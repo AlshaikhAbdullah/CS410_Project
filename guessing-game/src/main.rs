@@ -78,7 +78,7 @@ fn ui(app: &gtk::Application) {
 	);
 
 	// Entry
-    let entry_box = gtk::box::new(
+    let entry_box = gtk::Box::new(
         gtk::Orientation::Horizontal,5
         );
     entry_box.set_halign(gtk::Align::Center);
@@ -184,6 +184,28 @@ fn ui(app: &gtk::Application) {
                 message_clone.set_label("Please enter a number");
             }
         }
+      if let Some(num) = guess {
+            match num.cmp(&secret.borrow().unwrap()) {
+                Ordering::Less  => {
+                    message_clone.set_label("Too small!");
+                },
+                Ordering::Equal => {
+                    message_clone.set_label("You win! Congratulations");
+                },
+                Ordering::Greater   => {
+                    message_clone.set_label("Too big!");
+                }
+            }
+        }
+
+    });
+
+    stop_button.connect_clicked(move |_| {
+        // didn't use the container clone here
+        container.set_sensitive(false);
+        start_button.set_sensitive(true);
+    });
+
 
 
 
